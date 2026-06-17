@@ -1,5 +1,5 @@
 // REEMPLAZA ESTO por la nueva URL que te dé Render para este proyecto (+ /tareas)
-const API_URL = "https://tu-nuevo-proyecto-backend.onrender.com/tareas";
+const API_URL = "https://tareas-backend-i1pv.onrender.com/tareas";
 
 // Función para traer y mostrar las tareas
 async function obtenerTareas() {
