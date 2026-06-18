@@ -2,35 +2,112 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mis Tareas en la Nube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador de Tareas - CRUD completo</title>
   <style>
-    body { font-family: sans-serif; background: #eef2f3; padding: 30px; text-align: center; }
-    .box { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    input, select, button { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; border-radius: 5px; border: 1px solid #ccc; }
-    button { background: #2ecc71; color: white; border: none; font-weight: bold; cursor: pointer; }
-    button:hover { background: #27ae60; }
-    ul { list-style: none; padding: 0; text-align: left; }
-    li { background: #f9f9f9; padding: 12px; margin-bottom: 8px; border-left: 5px solid #3498db; border-radius: 3px; display: flex; justify-content: space-between; }
-    .Alta { border-left-color: #e74c3c; }
-    .Baja { border-left-color: #f1c40f; }
+    /* Estilos base de tu práctica de tareas */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+    h2, h3 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    label {
+      font-weight: bold;
+      color: #555;
+    }
+    input[type="text"], select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button.btn-submit {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.btn-submit:hover {
+      background-color: #2980b9;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    /* Clases de prioridad de tu práctica */
+    li.Alta {
+      border-left: 5px solid #e74c3c;
+    }
+    li.Media {
+      border-left: 5px solid #f1c40f;
+    }
+    li.Baja {
+      border-left: 5px solid #2ecc71;
+    }
   </style>
 </head>
 <body>
 
-  <div class="box">
-    <h2>📝 Mi Organizador Personal</h2>
-    
+  <div class="container">
+    <h2>Organizador de Tareas</h2>
     <form id="formTarea">
-      <input type="text" id="titulo" placeholder="¿Qué tienes que hacer hoy?" required>
-      <select id="prioridad">
-        <option value="Alta">🚨 Prioridad Alta</option>
-        <option value="Media">🔵 Prioridad Media</option>
-        <option value="Baja">🟢 Prioridad Baja</option>
-      </select>
-      <button type="submit">Agregar Tarea</button>
+      <div>
+        <label for="titulo">Título de la Tarea:</label>
+        <input type="text" id="titulo" required placeholder="Ej. Estudiar para el examen de NoSQL">
+      </div>
+      
+      <div>
+        <label for="prioridad">Prioridad:</label>
+        <select id="prioridad" required>
+          <option value="Alta">🔴 Alta</option>
+          <option value="Media">🟡 Media</option>
+          <option value="Baja">🟢 Baja</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn-submit">Agregar Tarea</button>
     </form>
+  </div>
 
-    <h3>Mis Pendientes:</h3>
+  <div class="container">
+    <h3>📋 Mis Tareas</h3>
+    
+    <div style="margin-bottom: 15px;">
+      <input type="text" id="buscador" oninput="filtrarTareas()" placeholder="🔍 Buscar tarea por título..." style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box;">
+    </div>
+
     <ul id="lista"></ul>
   </div>
 
